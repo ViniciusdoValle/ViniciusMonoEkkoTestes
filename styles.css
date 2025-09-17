@@ -8,77 +8,77 @@
 /* Barra de navegação fixa no topo */
 .navbar {
     background: #2c2f33;          /* Cor de fundo escura */
-    padding: 10px 0;             /* Espaçamento interno em cima e embaixo */
-    position: fixed;             /* Fixa no topo */
+    padding: 10px 0;              /* Espaçamento interno em cima e embaixo */
+    position: fixed;              /* Fixa no topo */
     top: 0;
     left: 0;
-    width: 100%;                 /* Ocupa toda a largura da tela */
-    z-index: 1000;               /* Fica acima dos outros elementos */
-    transition: top 0.3s ease;   /* Animação suave quando some/aparece */
+    width: 100%;                  /* Ocupa toda a largura da tela */
+    z-index: 1000;                /* Fica acima dos outros elementos */
+    transition: top 0.3s ease;    /* Animação suave quando some/aparece */
 }
 
 /* Lista do menu */
 .navbar ul {
-    list-style: none;            /* Remove bolinhas padrão da lista */
+    list-style: none;             /* Remove bolinhas padrão da lista */
     margin: 0;
     padding: 0;
-    display: flex;               /* Itens lado a lado */
-    justify-content: center;     /* Centraliza no meio da navbar */
-    flex-wrap: wrap;             /* Quebra linha se faltar espaço */
-    gap: 25px;                   /* Espaçamento entre os itens */
+    display: flex;                /* Itens lado a lado */
+    justify-content: center;      /* Centraliza no meio da navbar */
+    flex-wrap: wrap;              /* Quebra linha se faltar espaço */
+    gap: 25px;                    /* Espaçamento entre os itens */
     text-align: center;
 }
 
 /* Cada item da lista */
 .navbar ul li {
-    display: flex;               /* Deixa ícone e texto alinhados */
-    align-items: center;         /* Centraliza verticalmente */
-    gap: 6px;                    /* Espaço entre o "•" e o texto */
-    white-space: nowrap;         /* Impede quebra de linha dentro do item */
+    display: flex;                /* Deixa ícone e texto alinhados */
+    align-items: center;          /* Centraliza verticalmente */
+    gap: 6px;                     /* Espaço entre o "•" e o texto */
+    white-space: nowrap;          /* Impede quebra de linha dentro do item */
 }
 
 /* Bolinha antes de cada item */
 .navbar ul li::before {
-    content: "•";                /* Adiciona o símbolo */
-    color: #fff;                 /* Cor branca */
+    content: "•";                 /* Adiciona o símbolo */
+    color: #fff;                  /* Cor branca */
     font-size: 14px;
 }
 
 /* Links do menu */
 .navbar ul li a {
-    color: #fff;                 /* Cor branca */
-    font-size: 16px;             /* Tamanho da fonte */
-    text-decoration: none;       /* Remove sublinhado */
-    transition: 0.3s;            /* Animação suave ao mudar de cor */
+    color: #fff;                  /* Cor branca */
+    font-size: 16px;              /* Tamanho da fonte */
+    text-decoration: none;        /* Remove sublinhado */
+    transition: 0.3s;             /* Animação suave ao mudar de cor */
 }
 
 /* Cor do link ao passar o mouse */
 .navbar ul li a:hover {
-    color: #1e90ff;              /* Azul clarinho */
+    color: #1e90ff;               /* Azul clarinho */
 }
 
 /* Item "Como jogar de Ekko" */
 .navbar ul li.como-jogar-de-ekko {
-    white-space: nowrap;         /* Impede quebra */
-    margin-left: 1px;            /* Pequeno ajuste fino */
+    white-space: nowrap;          /* Impede quebra */
+    margin-left: 1px;             /* Pequeno ajuste fino */
 }
 
 /* Item "Como jogar contra o Ekko" */
 .navbar ul li.como-jogar-contra-o-ekko {
-    margin-left: -35px;          /* Move um pouco pra esquerda */
+    margin-left: -35px;           /* Move um pouco pra esquerda */
 }
 
 /* Configurações gerais do corpo da página */
 body {
-    padding-top: 120px;          /* Espaço pra não ficar escondido atrás da navbar */
-    background: #181818;         /* Fundo escuro */
-    color: #fff;                 /* Texto branco */
+    padding-top: 120px;           /* Espaço pra não ficar escondido atrás da navbar */
+    background: #181818;          /* Fundo escuro */
+    color: #fff;                  /* Texto branco */
     font-family: Arial, sans-serif;
 }
 
 /* Quando a navbar está escondida */
 .navbar.hidden {
-    top: -200px;                 /* Move pra cima (fora da tela) */
+    top: -200px;                  /* Move pra cima (fora da tela) */
 }
 
 /* --- RESPONSIVIDADE --- */
@@ -86,43 +86,43 @@ body {
 /* Ajustes até 1024px (notebooks/tablets) */
 @media (max-width: 1024px) {
     .navbar ul {
-        gap: 18px;               /* Diminui o espaço entre os itens */
+        gap: 18px;                /* Diminui o espaço entre os itens */
     }
     .navbar ul li a {
-        font-size: 14px;         /* Fonte menor */
+        font-size: 14px;          /* Fonte menor */
     }
 }
 
 /* Ajustes até 768px (tablets e celulares grandes) */
 @media (max-width: 768px) {
     .navbar ul {
-        gap: 12px;               /* Espaço ainda menor */
+        gap: 12px;                /* Espaço ainda menor */
     }
     .navbar ul li a {
-        font-size: 13px;         /* Fonte menor */
+        font-size: 13px;          /* Fonte menor */
     }
 }
 
 /* Ajustes até 480px (celulares pequenos) */
 @media (max-width: 480px) {
     .navbar ul {
-        gap: 8px;                /* Itens bem próximos */
+        gap: 8px;                 /* Itens bem próximos */
     }
     .navbar ul li a {
-        font-size: 12px;         /* Fonte menor */
+        font-size: 12px;          /* Fonte menor */
     }
     .navbar ul li.como-jogar-contra-o-ekko {
-        margin-left: -1px;       /* Corrige desalinhamento nesse tamanho */
+        margin-left: -1px;        /* Corrige desalinhamento nesse tamanho */
     }
 }
 
 /* Ajuste específico para Samsung Galaxy Tab A9+ deitado */
 @media (min-width: 800px) and (max-width: 1100px) and (orientation: landscape) {
     .navbar ul li.como-jogar-de-ekko {
-        margin-right: 15px;      /* Afasta da direita */
+        margin-right: 15px;       /* Afasta da direita */
     }
     .navbar ul li.como-jogar-contra-o-ekko {
-        margin-left: 0;          /* Remove margem negativa */
+        margin-left: 0;           /* Remove margem negativa */
     }
 }
 
@@ -140,6 +140,12 @@ body {
     }
 }
 
+/* --- Ajuste final: remove a margem negativa especificamente no mobile --- */
+@media (max-width: 768px) {
+    .navbar ul li.como-jogar-contra-o-ekko {
+        margin-left: 0; /* remove o puxão para a esquerda no mobile */
+    }
+}
 
 
 body {
