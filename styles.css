@@ -153,10 +153,10 @@ html {
 }
 
 /* =========================
-    AJUSTE ESPECÍFICO: Moto G84 deitado (landscape)
-    Abordagem mais flexível
+    AJUSTE ESPECÍFICO: Moto G84 (landscape)
+    VERSÃO CORRIGIDA E MAIS PRECISA
     ========================= */
-@media (min-width: 700px) and (orientation: landscape) {
+@media (min-width: 700px) and (max-width: 1000px) and (orientation: landscape) {
 
     /* Alinha a segunda linha do menu à esquerda */
     .navbar ul li.combos {
