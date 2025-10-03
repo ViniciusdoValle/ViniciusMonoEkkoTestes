@@ -1,0 +1,355 @@
+/* =========================
+   NAVBAR FIXA
+   ========================= */
+
+.navbar {
+    background: #2c2f33;
+    /* Cor de fundo da navbar */
+
+    padding: 10px 0;
+    /* Espaçamento interno vertical */
+
+    position: fixed;
+    /* Fixa a navbar no topo da tela */
+
+    top: 0;
+    /* Posiciona no topo */
+
+    left: 0;
+    /* Posiciona à esquerda */
+
+    width: 100%;
+    /* Ocupa toda a largura da tela */
+
+    z-index: 1000;
+    /* Fica acima de outros elementos */
+
+    overflow-x: auto;
+    /* Permite scroll horizontal se necessário */
+
+    white-space: nowrap;
+    /* Impede que os itens quebrem linha */
+}
+
+/* Esconde a navbar ao descer a página */
+.navbar.hidden {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.navbar ul {
+    list-style: none;
+    /* Remove marcadores de lista */
+
+    display: flex;
+    /* Exibe itens em linha usando Flexbox */
+
+    flex-wrap: nowrap;
+    /* Não quebra itens para a próxima linha */
+
+    justify-content: flex-start;
+    /* Alinha itens à esquerda */
+
+    align-items: center;
+    /* Alinha verticalmente ao centro */
+
+    padding: 0 15px;
+    /* Espaço interno horizontal */
+
+    margin: 0;
+    /* Remove margens padrão da lista */
+
+    gap: 10px;
+    /* Espaço entre os itens da navbar */
+}
+
+.navbar li {
+    display: inline-block;
+    /* Mantém os itens em linha */
+}
+
+.navbar a {
+    color: #ffffff;
+    /* Cor do texto dos links */
+
+    text-decoration: none;
+    /* Remove sublinhado */
+
+    font-size: 16px;
+    /* Tamanho da fonte */
+
+    padding: 6px 10px;
+    /* Espaço interno do link */
+
+    border-radius: 5px;
+    /* Arredonda os cantos do link */
+
+    transition: background 0.3s, color 0.3s;
+    /* Animação suave ao passar o mouse */
+
+    white-space: nowrap;
+    /* Impede quebra de linha dentro do link */
+}
+
+.navbar a:hover {
+    background: #7289da;
+    /* Cor de fundo ao passar o mouse */
+}
+
+/* Estado ativo (quando clicado) */
+.navbar a.active {
+    background: #5865f2;
+    /* Cor de fundo do link ativo */
+
+    color: #ffffff;
+    /* Cor do texto permanece branco */
+}
+
+/* ===== BODY UNIFICADO ===== */
+body {
+    padding-top: 50px;
+    /* Espaço para a navbar fixa */
+
+    font-size: 17px;
+    /* Tamanho de fonte confortável para leitura */
+
+    line-height: 1.7;
+    /* Espaçamento entre linhas */
+
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* Fonte moderna */
+
+    color: #ffffff;
+    /* Cor do texto branco */
+
+    max-width: 100%;
+    /* Não ultrapassa a largura da tela */
+
+    overflow-x: hidden;
+    /* Evita scroll horizontal indesejado */
+
+    margin: 0;
+    /* Remove margens padrão */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    img:not(.skill-icon):not([width="30"]) {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        display: block;
+    }
+
+    .skill-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.video-wrapper {
+    max-width: 100%;
+    width: 800px;
+    aspect-ratio: 16 / 9;
+    margin: 0 0 20px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+h2 {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 5px;
+}
+
+h2 img {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+h2 .dois-pontos {
+    margin-left: 5px;
+    display: inline;
+}
+
+.dois-pontos {
+    width: 100%;
+    text-align: left;
+}
+
+h2 span {
+    display: inline-block;
+    text-align: left;
+    margin-left: 5px;
+}
+
+footer {
+    background-color: #2c2f33;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* força largura igual em todas as colunas */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px; /* aumenta pra ficar igual à segunda imagem */
+    font-family: "Segoe UI", Arial, sans-serif; /* fonte mais próxima */
+    font-weight: 500; /* dá mais destaque */
+}
+
+th,
+td {
+    padding: 0;
+    border: 1px solid #444;
+    height: 40px; /* altura maior pros números ficarem centralizados */
+    vertical-align: middle; /* centraliza o conteúdo */
+    word-wrap: break-word;
+    font-size: 16px; /* força números e Q/W/E/R no mesmo tamanho */
+}
+
+/* Primeira coluna (Habilidades) */
+th:first-child,
+td:first-child {
+    white-space: nowrap; /* impede quebrar em duas linhas */
+    width: 100px; /* largura fixa no desktop */
+    font-size: 14px; /* um pouco menor pra caber melhor */
+}
+
+/* Ícones */
+table img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Responsividade: tablets */
+@media (max-width: 768px) {
+    th, td {
+        height: 34px;
+    }
+
+    th:first-child,
+    td:first-child {
+        width: 70px; /* ajusta largura no tablet */
+        font-size: 12px;
+    }
+
+    table img {
+        width: 26px;
+        height: 26px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}
+
+/* Responsividade: celulares */
+@media (max-width: 480px) {
+    th, td {
+        height: 28px;
+    }
+
+    th:first-child,
+    td:first-child {
+        width: 60px; /* ajusta largura no celular */
+        font-size: 11px;
+    }
+
+    table img {
+        width: 22px;
+        height: 22px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+}
+
+
+
+
+.section-wrapper {
+    display: flex;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+}
+
+.skin-container {
+    background-color: #2c2f33;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    margin: 1px 0 0 0;
+
+}
+
+.skin-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (min-width: 800px) and (max-width: 1100px) {
+
+    h1,
+    h2,
+    h3 {
+        flex-wrap: nowrap !important;
+        white-space: nowrap !important;
+    }
+}
+
+@media (min-width: 1280px) and (max-width: 1400px) and (orientation: landscape) {
+
+    h1,
+    h2,
+    h3 {
+        white-space: normal !important;
+        flex-wrap: wrap !important;
+    }
+}
+
+@media (min-width: 760px) and (max-width: 820px) {
+    .titulo-ekko {
+        font-size: 22px;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: 100%;
+    }
+}
