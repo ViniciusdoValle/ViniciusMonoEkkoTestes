@@ -1,0 +1,899 @@
+/* =========================
+   NAVBAR FIXA
+   ========================= */
+
+/* Define o estilo geral da barra de navegação (navbar) */
+.navbar {
+  background: #2c2f33; /* Cor de fundo da navbar */
+  padding: 10px 0; /* Espaçamento vertical interno */
+
+  position: fixed; /* Fixa a navbar no topo da tela */
+  top: 0; /* Posiciona no topo da página */
+  left: 0; /* Encosta à esquerda da tela */
+  width: 100%; /* Ocupa toda a largura disponível */
+
+  z-index: 1000; /* Mantém a navbar acima dos outros elementos */
+  overflow-x: auto; /* Permite rolar horizontalmente se tiver muitos itens */
+  white-space: nowrap; /* Impede quebra de linha entre os itens */
+
+  scroll-behavior: smooth; /* Rolagem suave (ao clicar em âncoras, por exemplo) */
+  -webkit-overflow-scrolling: touch; /* Rolagem suave em dispositivos iOS */
+
+  /* Transição suave quando a navbar aparece/desaparece */
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Classe usada para esconder a navbar ao rolar a página para baixo */
+.navbar.hidden {
+  transform: translateY(
+    -100%
+  ); /* Move a navbar para fora da tela (para cima) */
+  opacity: 0; /* Deixa transparente */
+  pointer-events: none; /* Impede cliques enquanto está escondida */
+}
+
+/* =========================
+   LISTA DE LINKS (UL e LI)
+   ========================= */
+
+.navbar ul {
+  list-style: none; /* Remove os marcadores padrão da lista */
+  display: flex; /* Coloca os itens lado a lado (em linha) */
+  flex-wrap: nowrap; /* Impede quebra de linha */
+  justify-content: flex-start; /* Alinha os itens à esquerda */
+  align-items: center; /* Centraliza verticalmente os itens */
+  padding: 0 15px; /* Espaçamento horizontal interno */
+  margin: 0; /* Remove margens padrão da lista */
+  gap: 10px; /* Espaçamento entre os itens */
+}
+
+.navbar li {
+  display: inline-block; /* Cada item de lista é tratado como bloco em linha */
+}
+
+/* =========================
+   LINKS DA NAVBAR (A)
+   ========================= */
+
+.navbar a {
+  color: #ffffff; /* Cor do texto dos links */
+  text-decoration: none; /* Remove sublinhado */
+  font-size: 16px; /* Tamanho da fonte */
+  padding: 6px 10px; /* Espaçamento interno do link */
+  border-radius: 5px; /* Cantos arredondados */
+  transition:
+    background 0.3s,
+    color 0.3s; /* Animação suave nas cores */
+  white-space: nowrap; /* Impede quebra de linha no texto */
+  -webkit-tap-highlight-color: transparent; /* Remove o flash azul ao tocar no mobile */
+  touch-action: manipulation; /* Melhora a resposta ao toque em dispositivos móveis */
+}
+
+/* =========================
+   HOVER (apenas em PC)
+   ========================= */
+
+/* Este bloco só aplica o efeito hover se o dispositivo tiver mouse.
+   Assim, o hover não aparece em telas sensíveis ao toque (mobile). */
+@media (hover: hover) and (pointer: fine) {
+  .navbar a:hover {
+    background: gray; /* Cor de fundo quando passa o mouse */
+    color: #fff; /* Cor do texto */
+  }
+}
+
+/* =========================
+   ESTADO ATIVO DO LINK
+   ========================= */
+
+/* Quando o link é clicado ou definido como ativo via JavaScript */
+.navbar a.active {
+  background: #5865f2; /* Fundo azul (cor padrão de ativo) */
+  color: #ffffff; /* Texto branco */
+}
+
+/* =========================
+   MOBILE (sem hover)
+   ========================= */
+
+/* No mobile, hover/active/focus não devem alterar o estilo do link,
+   apenas o link com .active terá cor. */
+@media (hover: none) {
+  .navbar a:focus:not(.active),
+  .navbar a:active:not(.active),
+  .navbar a:hover:not(.active) {
+    background: transparent !important; /* Sem fundo */
+    color: #ffffff !important; /* Texto permanece branco */
+    outline: none !important; /* Remove o contorno de foco */
+  }
+}
+
+/* =========================
+   FOCUS E ACTIVE SEM CLASSE .active
+   ========================= */
+
+/* Caso o link receba foco (por tabulação ou clique) mas não seja ativo,
+   ele mantém o estilo normal, sem alterar a cor. */
+.navbar a:not(.active):focus,
+.navbar a:not(.active):active {
+  background: transparent !important; /* Sem fundo */
+  color: #ffffff !important; /* Texto branco */
+  outline: none; /* Remove contorno */
+}
+
+/* =========================
+   GARANTE A COR DO LINK ATIVO
+   ========================= */
+
+/* Força o estilo do link ativo em qualquer situação */
+.navbar a.active {
+  background: #5865f2 !important; /* Fundo azul */
+  color: #ffffff !important; /* Texto branco */
+}
+
+/* ===== BODY UNIFICADO ===== */
+body {
+  padding-top: 50px;
+  /* Espaço para a navbar fixa */
+
+  font-size: 17px;
+  /* Tamanho de fonte confortável para leitura */
+
+  line-height: 1.7;
+  /* Espaçamento entre linhas */
+
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Fonte moderna */
+
+  color: #ffffff;
+  /* Cor do texto branco */
+
+  max-width: 100%;
+  /* Não ultrapassa a largura da tela */
+
+  overflow-x: hidden;
+  /* Evita scroll horizontal indesejado */
+
+  margin: 0;
+  /* Remove margens padrão */
+}
+
+/* =========================
+   RESET GLOBAL
+   ========================= */
+* {
+  box-sizing: border-box;
+  /* Inclui padding e border no tamanho total do elemento */
+
+  margin: 0;
+  /* Remove margens padrão */
+
+  padding: 0;
+  /* Remove padding padrão */
+}
+
+/* =========================
+   IMAGENS RESPONSIVAS
+   ========================= */
+@media (max-width: 768px) {
+  img:not(.skill-icon):not([width="30"]) {
+    width: 100%;
+    /* Ajusta largura da imagem para o container */
+
+    height: auto;
+    /* Mantém proporção da imagem */
+
+    max-width: 100%;
+    /* Não ultrapassa a largura máxima */
+
+    display: block;
+    /* Evita espaços indesejados ao redor */
+  }
+
+  .skill-icon {
+    width: 20px;
+    /* Tamanho fixo de ícones de habilidades */
+    height: 20px;
+  }
+}
+
+/* =========================
+   VIDEO RESPONSIVO
+   ========================= */
+.video-wrapper {
+  max-width: 100%;
+  /* Não ultrapassa a largura da tela */
+
+  width: 800px;
+  /* Largura padrão do vídeo */
+
+  aspect-ratio: 16 / 9;
+  /* Mantém proporção 16:9 */
+
+  margin: 0 0 20px 0;
+  /* Margem inferior */
+
+  position: relative;
+  /* Para posicionar iframe dentro */
+
+  overflow: hidden;
+  /* Esconde excesso do vídeo */
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  /* Preenche todo o container */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* Remove borda padrão do iframe */
+}
+
+/* =========================
+   TÍTULOS COM ÍCONES
+   ========================= */
+h2 {
+  display: flex;
+  /* Flexbox para alinhar texto e ícone */
+
+  align-items: center;
+  /* Alinha verticalmente ao centro */
+
+  flex-wrap: nowrap;
+  /* Não quebra linha */
+
+  gap: 5px;
+  /* Espaço entre elementos */
+}
+
+h2 img {
+  width: 25px;
+  /* Largura do ícone */
+
+  height: 25px;
+  /* Altura do ícone */
+
+  vertical-align: middle;
+  /* Alinha com o texto */
+
+  flex-shrink: 0;
+  /* Não reduz o tamanho do ícone */
+}
+
+h2 .dois-pontos {
+  margin-left: 5px;
+  /* Espaço após ícone */
+  display: inline;
+}
+
+.dois-pontos {
+  width: 100%;
+  /* Ocupa toda a largura disponível */
+
+  text-align: left;
+  /* Alinha à esquerda */
+}
+
+h2 span {
+  display: inline-block;
+  /* Mantém span em linha com largura própria */
+
+  text-align: left;
+  margin-left: 0px;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+footer {
+  background-color: #2c2f33;
+  /* Fundo do footer */
+
+  color: #ffffff;
+  /* Texto branco */
+
+  padding: 20px 0;
+  /* Espaçamento interno vertical */
+
+  text-align: center;
+  /* Texto centralizado */
+
+  font-size: 14px;
+  /* Tamanho da fonte menor */
+}
+
+/* =========================
+   TABELAS
+   ========================= */
+table {
+  width: 100%;
+  /* Ocupa toda a largura do container */
+
+  border-collapse: collapse;
+  /* Une bordas de células */
+
+  text-align: center;
+  /* Texto centralizado */
+
+  margin-top: 20px;
+  /* Espaço acima da tabela */
+}
+
+th,
+td {
+  padding: 8px;
+  /* Espaçamento interno das células */
+
+  border: 1px solid #444;
+  /* Borda das células */
+}
+
+/* =========================
+   BARRAS DE POPULARIDADE / WINRATE
+   ========================= */
+.bar {
+  height: 20px;
+  /* Altura da barra */
+
+  display: inline-block;
+
+  margin-top: 5px;
+  /* Espaço acima da barra */
+}
+
+.popularity {
+  background-color: #4cc3dc;
+  /* Cor da barra de popularidade */
+}
+
+.winrate {
+  background-color: #3dd68c;
+  /* Cor da barra de winrate */
+}
+
+.bar-container {
+  display: flex;
+  /* Flexbox para alinhar barras e legendas */
+
+  align-items: center;
+  /* Alinha verticalmente ao centro */
+
+  gap: 10px;
+  /* Espaço entre elementos */
+}
+
+/* =========================
+   JUNGLE & MID SECTIONS
+   ========================= */
+.jungle-title {
+  margin-bottom: 0.1rem;
+  /* Ajusta espaçamento abaixo do título */
+}
+
+.jungle-table {
+  margin-top: 0;
+  /* Remove margem superior */
+}
+
+.mid-title {
+  margin-bottom: 0.1rem;
+}
+
+.mid-wrapper {
+  padding-top: 0;
+  /* Remove padding superior */
+
+  margin-top: 0;
+  /* Remove margem superior */
+}
+
+.mid-table {
+  margin-top: 0;
+  /* Remove margem superior */
+}
+
+.skill-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  /* espaço entre a letra e o ícone */
+}
+
+.skill-letter {
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+  /* cor da letra */
+}
+
+.skill-icon {
+  width: 32px;
+  /* ajusta o tamanho do ícone */
+  height: 32px;
+}
+
+/* Colunas 1–9 */
+th:nth-child(n + 2):nth-child(-n + 10),
+td:nth-child(n + 2):nth-child(-n + 10) {
+  min-width: 45px;
+  /* largura mínima fixa */
+}
+
+/* Colunas 10–18 */
+th:nth-child(n + 11),
+td:nth-child(n + 11) {
+  min-width: 45px;
+  /* mesmo tamanho */
+}
+
+/* =========================
+   SECTION WRAPPER
+   ========================= */
+.section-wrapper {
+  display: flex;
+  /* Flexbox para seções lado a lado */
+
+  align-items: flex-start;
+  /* Alinha ao topo da seção */
+
+  padding: 0;
+  margin: 0;
+}
+
+/* =========================
+   SKINS
+   ========================= */
+.skin-container {
+  background-color: #2c2f33; /* Define a cor de fundo do card (cinza escuro) */
+
+  padding: 20px; /* Espaço interno: afasta o conteúdo (imagem/texto) das bordas do card */
+
+  border-radius: 15px; /* Arredonda os cantos do card */
+
+  max-width: 400px; /* Limita a largura máxima do card (não cresce mais que isso em telas grandes) */
+
+  width: 90%; /* Largura relativa: ocupa 90% do espaço disponível do container pai */
+
+  text-align: center; /* Centraliza o conteúdo interno (imagem e textos) horizontalmente */
+
+  margin: 1px 0 0 7px; /* ← Move o fundo cinz pra direita */
+}
+
+.skin-container img {
+  max-width: 100%;
+  /* Não ultrapassa largura do container */
+
+  height: auto;
+  /* Mantém proporção */
+}
+
+/* =========================
+   AJUSTES DE TÍTULOS EM TELAS MÉDIAS
+   ========================= */
+@media (min-width: 800px) and (max-width: 1100px) {
+  h1,
+  h2,
+  h3 {
+    flex-wrap: nowrap !important;
+    /* Evita quebra de linha */
+
+    white-space: nowrap !important;
+    /* Garante que fique em linha */
+  }
+}
+
+/* =========================
+   AJUSTES DE TÍTULOS EM TELAS GRANDES LANDSCAPE
+   ========================= */
+@media (min-width: 1280px) and (max-width: 1400px) and (orientation: landscape) {
+  h1,
+  h2,
+  h3 {
+    white-space: normal !important;
+    /* Permite quebra de linha */
+
+    flex-wrap: wrap !important;
+    /* Flex wrap ativo */
+  }
+}
+
+/* =========================
+   AJUSTE TÍTULO EKKO EM TELAS 760px ~ 820px
+   ========================= */
+@media (min-width: 760px) and (max-width: 820px) {
+  .titulo-ekko {
+    font-size: 22px;
+    /* Tamanho menor do título */
+
+    text-align: left;
+    /* Alinha à esquerda */
+
+    margin: 0;
+    /* Remove margem */
+
+    padding: 0;
+    /* Remove padding */
+
+    display: block;
+    /* Força display em bloco */
+
+    width: 100%;
+    /* Ocupa toda a largura */
+  }
+}
+
+/* PARÁGRAFOS */
+p {
+  padding-left: 7px; /* Espaço interno à esquerda para afastar o texto da borda */
+  padding-right: 7px; /* Espaço interno à direita para não colar o texto na borda */
+  text-indent: 0px; /* Garante que a primeira linha alinhe com as demais */
+}
+
+/* TÍTULOS */
+h1,
+h2,
+h3 {
+  padding-left: 7px; /* Mantém o recuo geral */
+  padding-right: 7px; /* Espaço interno à direita para não colar o texto na borda */
+  margin-left: 3px; /* Puxa o título pra alinhar com o texto */
+}
+
+/* PARÁGRAFOS */
+p {
+  padding-left: 12px; /* Mantém o recuo geral */
+  padding-right: 7px; /* Espaço interno à direita para não colar o texto na borda */
+}
+
+img[src*="ddragon.leagueoflegends.com"][style*="width: 32px"] {
+  margin-left: 7px; /* Afasta o ícone dos campeões do LoL da borda esquerda */
+}
+
+/* =========================
+   AJUSTE DE MARGEM APENAS NO PC
+   ========================= */
+
+@media (min-width: 1024px) {
+  img {
+    margin-left: 12px;
+  }
+
+  video {
+    margin-left: 12px;
+  }
+
+  iframe {
+    margin-left: 12px;
+  }
+
+  .video-wrapper {
+    margin-left: 12px;
+  }
+}
+
+/* Container principal que envolve o ícone + texto do buff */
+.buff-ekko {
+  display: flex;
+  /* Ativa o Flexbox → deixa imagem e texto lado a lado */
+
+  align-items: center;
+  /* Centraliza verticalmente o ícone e o bloco de texto */
+
+  gap: 10px;
+  /* Cria um espaço de 10px entre o ícone e o texto */
+}
+
+/* Seleciona apenas a imagem dentro do bloco */
+.buff-ekko img {
+  flex-shrink: 0;
+  /* Impede que a imagem encolha
+     quando o espaço da tela for pequeno */
+}
+
+/* Bloco que contém o texto do buff */
+.buff-text {
+  display: flex;
+  /* Transforma o texto em um container flex também */
+
+  align-items: center;
+  /* Centraliza o conteúdo do texto verticalmente */
+
+  line-height: 1.4;
+  /* Define o espaçamento entre linhas para melhor leitura */
+}
+
+/* Ajustes aplicados SOMENTE no celular */
+@media (max-width: 768px) {
+  .buff-text {
+    transform: translate(-4px, 8px);
+    /* Move o texto visualmente:
+       -4px no eixo X → 4px para a esquerda
+        8px no eixo Y → 8px para baixo
+       (é um ajuste fino visual sem alterar o layout estrutural) */
+  }
+}
+
+/* Container principal que envolve o ícone + texto do buff da habilidade Q */
+.buff-habilidade-q-do-ekko {
+  display: flex;
+  /* Ativa o Flexbox → deixa imagem e texto lado a lado */
+
+  align-items: center;
+  /* Centraliza verticalmente a imagem e o texto */
+
+  gap: 10px;
+  /* Cria um espaço de 10px entre o ícone e o texto */
+}
+
+/* Seleciona apenas a imagem dentro do bloco */
+.buff-habilidade-q-do-ekko img {
+  flex-shrink: 0;
+  /* Impede que a imagem diminua de tamanho
+     quando o espaço da tela for pequeno */
+}
+
+/* Seleciona o texto ao lado da imagem */
+.buff-habilidade-q-do-ekko-text {
+  line-height: 1.4;
+  /* Define o espaçamento entre linhas do texto.
+     1.4 melhora a leitura */
+}
+
+/* Ajustes aplicados SOMENTE no celular */
+@media (max-width: 768px) {
+  .buff-habilidade-q-do-ekko {
+    align-items: flex-start;
+    /* No celular, muda o alinhamento vertical:
+       em vez de centralizar, alinha pelo topo */
+  }
+
+  .buff-habilidade-q-do-ekko-text {
+    margin-top: -1px;
+    /* Move o texto levemente para cima.
+       Pode ajustar para 2px, 3px, 5px etc até ficar visualmente perfeito */
+
+    margin-left: -4px;
+    /* Move o texto 4px para a esquerda.
+       Isso aproxima mais o texto do ícone */
+  }
+}
+
+/* Container principal que envolve a imagem + texto */
+.item-buff-botinha-pro-ekko {
+  display: flex;
+  /* Ativa o Flexbox → deixa os elementos lado a lado */
+
+  align-items: center;
+  /* Centraliza verticalmente a imagem e o texto */
+
+  gap: 10px;
+  /* Cria um espaço de 10px entre a imagem e o texto */
+}
+
+/* Seleciona apenas a imagem dentro do container */
+.item-buff-botinha-pro-ekko img {
+  flex-shrink: 0;
+  /* Impede que a imagem encolha
+     caso o espaço da tela fique pequeno */
+}
+
+/* Seleciona o texto ao lado da imagem */
+.item-buff-botinha-pro-ekko-text {
+  line-height: 1.4;
+  /* Define o espaçamento entre linhas do texto.
+     1.4 deixa mais confortável para leitura */
+}
+
+/* Ajuste SOMENTE no celular */
+/* Esse bloco só é aplicado quando a tela tiver
+   no máximo 768px de largura (celulares) */
+@media (max-width: 768px) {
+  .item-buff-botinha-pro-ekko {
+    align-items: center;
+    /* Garante que continue centralizado verticalmente */
+
+    padding-left: 6px;
+    /* Cria um pequeno espaço interno à esquerda,
+       evitando que a imagem fique colada na borda da tela */
+  }
+
+  .item-buff-botinha-pro-ekko-text {
+    position: relative;
+    /* Permite mover o texto levemente sem quebrar o layout */
+
+    top: 8px;
+    /* Move o texto 8px para baixo
+       (ajuste fino visual para alinhar melhor com o ícone) */
+  }
+}
+
+/* Aplica todas as regras abaixo apenas em telas de até 768px (celulares) */
+@media (max-width: 768px) {
+  /* Seleciona imagens, mas EXCLUI:
+     - imagens com classe .skill-icon
+     - imagens com width="30"
+     - imagens que têm style="width: 32px" (seus ícones de campeões)
+     Isso evita bagunçar ícones pequenos do layout */
+  img:not(.skill-icon):not([width="30"]):not([style*="width: 32px"]) {
+    /* Define que a largura máxima da imagem será a largura da tela menos 14px
+       (7px de espaço à esquerda + 7px à direita) */
+    max-width: calc(100% - 14px);
+
+    /* Faz a imagem se comportar como bloco (ocupa uma linha inteira) */
+    display: block;
+
+    /* Centraliza a imagem horizontalmente */
+    margin-left: auto;
+
+    /* Centraliza a imagem horizontalmente junto com margin-left */
+    margin-right: auto;
+  }
+
+  /* Aplica regras para vídeos */
+  video {
+    /* Limita a largura máxima do vídeo à largura da tela menos 14px
+       criando espaço lateral igual ao das imagens */
+    max-width: calc(100% - 14px);
+
+    /* Faz o vídeo ocupar uma linha inteira */
+    display: block;
+
+    /* Centraliza o vídeo horizontalmente */
+    margin-left: auto;
+
+    /* Centraliza o vídeo horizontalmente junto com margin-left */
+    margin-right: auto;
+  }
+
+  /* Aplica regras para containers de vídeo (ex: embeds do YouTube) */
+  .video-wrapper {
+    /* Limita a largura máxima do container de vídeo */
+    max-width: calc(100% - 14px);
+
+    /* Centraliza o container horizontalmente */
+    margin-left: auto;
+
+    /* Centraliza o container horizontalmente junto com margin-left */
+    margin-right: auto;
+  }
+}
+
+/* Classe usada para estilizar os vídeos das habilidades */
+.skill-video {
+  /* Faz o vídeo ocupar 100% da largura do container onde ele está */
+  width: 100%;
+
+  /* Define um limite máximo de largura para o vídeo (no desktop ele não passa de 800px) */
+  max-width: 800px;
+
+  /* Mantém a proporção original do vídeo automaticamente */
+  height: auto;
+}
+
+/* Aplica as regras abaixo apenas quando a tela tiver 768px ou menos (celulares) */
+@media (max-width: 768px) {
+  /* Seleciona novamente os vídeos que usam a classe .skill-video */
+  .skill-video {
+    /* Define a largura do vídeo como 100% da tela menos 14px
+       criando 7px de espaço à esquerda e 7px à direita */
+    width: calc(100% - 14px);
+
+    /* Centraliza o vídeo horizontalmente dentro do container */
+    margin-left: auto;
+
+    /* Completa a centralização horizontal junto com margin-left */
+    margin-right: auto;
+
+    /* Faz o vídeo se comportar como bloco (ocupando uma linha inteira) */
+    display: block;
+  }
+}
+
+.item-aurora-e-crepusculo-pro-ekko {
+  display: flex; /* deixa ícone e texto lado a lado */
+  align-items: center; /* centraliza verticalmente */
+  gap: 1px; /* espaço entre ícone e texto */
+}
+
+@media (max-width: 768px) {
+  .item-aurora-e-crepusculo-pro-ekko {
+    margin-left: 12px; /* move só no celular */
+  }
+}
+
+.p-passiva-ressonancia-revo-z-do-ekko-nerf-buff {
+  display: flex; /* coloca ícone e texto lado a lado */
+  align-items: center; /* centraliza verticalmente */
+  gap: 1px; /* espaço entre ícone e texto */
+}
+
+/* ajuste apenas no celular */
+@media (max-width: 768px) {
+  .p-passiva-ressonancia-revo-z-do-ekko-nerf-buff {
+    margin-left: 12px; /* empurra ícone + texto para a direita */
+  }
+}
+.botinha-passos-de-mercurio-de-mr-pro-ekko-buff {
+  display: flex; /* coloca ícone e texto lado a lado */
+  align-items: center; /* centraliza verticalmente */
+  gap: 8px; /* espaço entre ícone e texto */
+}
+
+/* ajuste apenas no celular */
+@media (max-width: 768px) {
+  .botinha-passos-de-mercurio-de-mr-pro-ekko-buff {
+    margin-left: 12px; /* empurra ícone + texto para a direita */
+  }
+}
+
+/* Classe do container que junta o ícone e o texto do buff */
+.buff-habilidade-q-giratempo-do-ekko {
+  display: flex;
+  /* Ativa o Flexbox para colocar o ícone e o texto lado a lado */
+
+  align-items: flex-start;
+  /* Alinha os elementos pelo topo (ícone e texto começam na mesma altura) */
+
+  gap: 10px;
+  /* Define o espaço de 10px entre o ícone e o texto */
+}
+
+/* Classe usada no texto que fica ao lado do ícone */
+.buff-habilidade-q-giratempo-do-ekko-text {
+  line-height: 1.4;
+  /* Controla o espaçamento entre linhas do texto quando ele quebra para duas linhas */
+}
+
+/* Media query: aplica regras apenas em telas menores (celulares) */
+@media (max-width: 768px) {
+  /* Ajuste específico do container no celular */
+  .buff-habilidade-q-giratempo-do-ekko {
+    margin-left: 10px;
+    /* Empurra todo o bloco (ícone + texto) 10px para a direita
+para não ficar colado na borda da tela do celular */
+  }
+}
+
+/* Ajuste apenas para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .buff-habilidade-q-giratempo-do-ekko {
+    align-items: center; /* centraliza o ícone e o texto verticalmente */
+  }
+
+}
+
+/* Ajuste do vídeo do Highlight no PC */
+#highlight + .video-wrapper {
+  margin-left: -2px; /* alinha o vídeo com o título */
+}
+
+/* Ajuste somente para celular */
+@media (max-width: 768px) {
+  /* Seleciona o vídeo que vem depois do título Highlight */
+  #highlight + .video-wrapper {
+    /* cria um pequeno espaço da borda esquerda */
+    margin-left: 7px !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+
+  .buff-habilidade-q-giratempo-do-ekko {
+    margin-left: 0 !important;
+    padding-left: 7px; /* mesmo padrão dos textos */
+    align-items: flex-start;
+  }
+
+  .buff-habilidade-q-giratempo-do-ekko img {
+    margin-left: 0 !important;
+  }
+
+  .buff-habilidade-q-giratempo-do-ekko-text {
+    margin-left: 0 !important;
+  }
+
+}
